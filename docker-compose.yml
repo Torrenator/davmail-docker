@@ -1,0 +1,12 @@
+version: '3.6'
+services:
+  davmail:
+    image: davmail:1.0.0
+    container_name: davmail
+    volumes:
+      - davmail-config:/davmail
+    ports:
+      - 1143:1143
+
+volumes:
+  davmail-config:

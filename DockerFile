@@ -1,0 +1,14 @@
+FROM ubuntu
+LABEL version="1.0.0"
+LABEL davmail_version="6.0.1"
+ADD davmail_latest.deb /tmp
+RUN apt-get update -y && apt-get install -y openjdk-11-jre libopenjfx-java openjfx
+RUN dpkg -i /tmp/davmail_latest.deb
+EXPOSE 1143/tcp
+EXPOSE 1025/tcp
+EXPOSE 1110/tcp
+EXPOSE 1080/tcp
+EXPOSE 1389/tcp
+VOLUME ["/davmail"]
+COPY davmail.properties /davmail/davmail.properties
+CMD ["davmail","-c","/davmail/davmail.properties"]
